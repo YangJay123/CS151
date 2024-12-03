@@ -19,7 +19,7 @@ public class DinerMenuItem implements MenuItem, Serializable  {
 
 	@Override
 	public int compareTo(MenuItem o) {
-		return this.toDataString().compareTo(o.toDataString());
+		return this.getTitle().compareTo(o.getTitle());
 	}
 
 	@Override
