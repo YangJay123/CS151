@@ -75,7 +75,7 @@ public class DinerMenuItem implements MenuItem, Serializable  {
 
 	@Override
 	public String toDataString() {
-		return this.toString();
+		return String.format("%s|%s|%s|.2f|%d|%b|%b", title, itemID, description, price, count, available, current);
 	}
 
 	@Override

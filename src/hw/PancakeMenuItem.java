@@ -25,5 +25,92 @@ public class PancakeMenuItem implements MenuItem, Serializable {
         this.current = current;
         this.available = count > 0 && current;
     }
-   		// xxx your codes
+
+	@Override
+	public int compareTo(MenuItem o) {
+		return this.getTitle().compareTo(o.getTitle());
+	}
+
+	@Override
+	public String getTitle() {
+		return this.title;
+	}
+
+	@Override
+	public String getItemID() {
+		return this.itemID;
+	}
+
+	@Override
+	public String getDescription() {
+		return this.getDescription();
+	}
+
+	@Override
+	public float getPrice() {
+		return this.price;
+	}
+
+	@Override
+	public int getCount() {
+		return this.count;
+	}
+
+	@Override
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	@Override
+	public boolean isAvailable() {
+		return this.available;
+	}
+
+	@Override
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
+
+	@Override
+	public boolean isCurrent() {
+		return this.current;
+	}
+
+	@Override
+	public void setCurrent(boolean current) {
+		this.current = current;
+	}
+
+	@Override
+	public String toDataString() {
+		return String.format("%s|%s|%s|%.2f|%d|%b|%b", title, itemID, description, price, count, available, current);
+	}
+
+	@Override
+	public void addItem(MenuItem item) {
+		this.menuItems.add(item);
+	}
+
+	@Override
+	public void removeItem(String itemID) {
+		Iterator<MenuItem> iterator = menuItems.iterator();
+		while (iterator.hasNext()) {
+			MenuItem item = iterator.next();
+			if(item.getItemID() == itemID) {
+				iterator.remove();
+				break;
+			}
+		}
+	}
+
+	@Override
+	public Iterator<MenuItem> createIterator() {
+		// TODO Auto-generated method stub
+		return menuItems.iterator();
+	}
+
+	@Override
+	public String getMenuType() {
+		return "Pancake menu";
+	}
 }

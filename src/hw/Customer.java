@@ -112,7 +112,7 @@ public class Customer implements User, Serializable {
 
 	@Override
 	public String toDataString() {
-		return this.toString();
+		return String.format("%s|%s|%s|%s|%s|%b", firstName, lastName, email, userName, password, isActive);
 	}
     
 }
