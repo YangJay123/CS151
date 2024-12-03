@@ -18,4 +18,5 @@ public class LoginScreen extends JDialog {
         setLocationRelativeTo(parent);
 
 	// xxx your codes
+    }
 }
