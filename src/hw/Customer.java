@@ -60,7 +60,11 @@ public class Customer implements User, Serializable {
     	this.isActive = b;
     }
 
-	
+	@Override
+	public int compareTo(User o) {
+		return 0;
+	}
+
 	@Override
 	public List<String> getOrderedItems() {
 		return this.orderedItems;
@@ -73,26 +77,31 @@ public class Customer implements User, Serializable {
 
 	@Override
 	public void orderItems(MenuItem item) throws ItemNotAvailableException {
-		// TODO Auto-generated method stub
-		
+		if(!item.isAvailable()) {
+			throw new ItemNotAvailableException("Item is not available: " + item.toDataString());
+		} 	
+		if(!canPlace()) {
+			 throw new IllegalStateException("Cannot order more than " + MAX_ORDER_LIMIT + " items.");
+		}
+		this.orderedItems.add(item.toDataString());
 	}
 
 	@Override
 	public void setOrderedItems(List<String> orderedItems) {
-		// TODO Auto-generated method stub
-		
+		this.orderedItems = orderedItems;
 	}
 
 	@Override
 	public void cancelItem(MenuItem item) {
-		// TODO Auto-generated method stub
+		orderedItems.remove(item.toDataString());
 		
 	}
 
 	@Override
 	public boolean canPlace() {
-		// TODO Auto-generated method stub
-		return false;
+		if (this.orderedItems.size() < MAX_ORDER_LIMIT) {
+			return true;
+		} else return false;
 	}
 
 	@Override
@@ -103,8 +112,7 @@ public class Customer implements User, Serializable {
 
 	@Override
 	public String toDataString() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.toString();
 	}
     
 }
