@@ -65,62 +65,65 @@ public class Admin implements User, Serializable {
 
 	@Override
 	public List<String> getOrderedItems() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.orderedItems;
 	}
 
 	@Override
 	public String getRole() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Admin";
 	}
 
 	@Override
 	public void orderItems(MenuItem item) throws ItemNotAvailableException {
-		// TODO Auto-generated method stub
+		if(!item.isAvailable()) {
+			throw new ItemNotAvailableException("Item is not available: " + item.toDataString());
+		} 	
+		if(!canPlace()) {
+			 throw new IllegalStateException("Cannot order more than " + MAX_ORDER_LIMIT + " items.");
+		}
+		this.orderedItems.add(item.toDataString());
 		
 	}
 
 	@Override
 	public void setActive(boolean active) {
-		// TODO Auto-generated method stub
+		this.isActive = active;
 		
 	}
 
 	@Override
 	public void setOrderedItems(List<String> orderedItems) {
-		// TODO Auto-generated method stub
+		this.orderedItems = orderedItems;
 		
 	}
 
 	@Override
 	public void setUserName(String userName) {
-		// TODO Auto-generated method stub
+		this.setUserName(userName);
 		
 	}
 
 	@Override
 	public void cancelItem(MenuItem item) {
-		// TODO Auto-generated method stub
+		this.orderedItems.remove(item.toDataString());
 		
 	}
 
 	@Override
 	public boolean canPlace() {
-		// TODO Auto-generated method stub
-		return false;
+		if (this.orderedItems.size() < MAX_ORDER_LIMIT) {
+			return true;
+		} else return false;
 	}
 
 	@Override
 	public String getDetails() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String toDataString() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.toString();
 	}
     
    // xxx your codes
