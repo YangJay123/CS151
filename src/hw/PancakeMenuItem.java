@@ -111,6 +111,6 @@ public class PancakeMenuItem implements MenuItem, Serializable {
 
 	@Override
 	public String getMenuType() {
-		return "Pancake menu";
+		return "Puncake menu";
 	}
 }
