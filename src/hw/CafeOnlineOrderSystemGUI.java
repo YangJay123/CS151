@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 
 public class CafeOnlineOrderSystemGUI extends JFrame{
 	
+	private cafe pugCafe = cafe.DB;
+	
 	public CafeOnlineOrderSystemGUI() {
         // Set up the frame
         setTitle("Pug's Puncake Diner Co.");
@@ -35,7 +37,13 @@ public class CafeOnlineOrderSystemGUI extends JFrame{
         
         buttonPanel.add(notUser);
         buttonPanel.add(signUpButton);
+        
+        loginButton.addActionListener(e -> {
+            LoginScreen loginScreen = new LoginScreen(CafeOnlineOrderSystemGUI.this, null);
+            loginScreen.setVisible(true);
+        });
       
+        
         add(buttonPanel, BorderLayout.SOUTH);
         
         
