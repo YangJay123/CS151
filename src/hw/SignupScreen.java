@@ -134,7 +134,7 @@ class SubmitButtonListener implements ActionListener{
 	private static String generateUsername(String firstName, String lastName) {
         Random random = new Random();
         int randomNumber = 1000 + random.nextInt(9000);  // Generates a number from 1000 to 9999
-        return "" + firstName.charAt(0) + lastName.charAt(0) + "-" + randomNumber;
+        return "" + firstName + randomNumber;
     }
 	
 	

@@ -50,11 +50,11 @@ public class CafeOnlineOrderSystemGUI extends JFrame{
         
         loginButton.addActionListener(e -> {
             LoginScreen loginScreen = new LoginScreen(CafeOnlineOrderSystemGUI.this, null);
-            loginScreen.setVisible(true);
+            loginScreen.displayLoginForm();
         });
         signUpButton.addActionListener(e -> {
             SignupScreen signUp = new SignupScreen(CafeOnlineOrderSystemGUI.this, pugCafe);
-            SignupScreen.displaySignupForm();
+            signUp.displaySignupForm();
           //  signUp.setVisible(true);
         });
         
