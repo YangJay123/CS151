@@ -28,7 +28,7 @@ public class CafeOnlineOrderSystemGUI extends JFrame{
         gbc.insets = new Insets(10, 50, 10, 50); 
 		
    		// Welcome title
-        JLabel welcomeLabel = new JLabel("Welcome to Pug's Puncake Diner!", SwingConstants.CENTER);
+        JLabel welcomeLabel = new JLabel("Welcome to Pug's Puncake Cafe!", SwingConstants.CENTER);
         welcomeLabel.setFont(new Font("Serif", Font.BOLD, 32));
       
         
@@ -54,7 +54,8 @@ public class CafeOnlineOrderSystemGUI extends JFrame{
         });
         signUpButton.addActionListener(e -> {
             SignupScreen signUp = new SignupScreen(CafeOnlineOrderSystemGUI.this, pugCafe);
-            signUp.setVisible(true);
+            SignupScreen.displaySignupForm();
+          //  signUp.setVisible(true);
         });
         
         frame.setVisible(true);
@@ -62,7 +63,7 @@ public class CafeOnlineOrderSystemGUI extends JFrame{
 	public static void main(String[] args) {
 		 SwingUtilities.invokeLater(() -> {
 	            CafeOnlineOrderSystemGUI gui = new CafeOnlineOrderSystemGUI();
-	            gui.setVisible(true);
+	           // gui.setVisible(true);
 	        });
 	}
 }

@@ -18,4 +18,8 @@ public enum cafe {
 	}
 
    		// xxx your codes
+	public synchronized boolean addUser(User u) {
+		users.put(u.getUserName(), u);
+		return true;
+	}
 }
