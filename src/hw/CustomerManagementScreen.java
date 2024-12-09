@@ -44,13 +44,15 @@ public class CustomerManagementScreen extends JFrame {
 	
 	private void setup() {
 		setTitle("Customer Management Dashboard");
-		setSize(800, 800);
+		setSize(800, 600);
+		this.setResizable(false);
 		setLocationRelativeTo(null);
 		setLayout(new GridBagLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel pnlTop = buildPnlTop ();
 		JPanel userDisplayPanel =  buildUserDisplayPanel ( );
+		JPanel userManagePanel = buildUserManagePanel();
 		JPanel pnlSort   = buildPnlSort ();
 		JPanel pnlSearch   = buildPnlSearch ();
 		
@@ -66,6 +68,8 @@ public class CustomerManagementScreen extends JFrame {
         	this.add(pnlTop, gbc);                                    
         	this.add(userDisplayPanel, gbc);
         	
+        	this.add(userManagePanel, gbc);
+        	
         	this.add(pnlSort, gbc);
         	this.add(pnlSearch, gbc);
         	this.show();
@@ -75,8 +79,9 @@ public class CustomerManagementScreen extends JFrame {
     public JPanel buildPnlTop  ( ) {
 		JPanel p = new JPanel ();
 		JLabel lblTitle = new JLabel ( "Pug Petting Cafe Users" ) ;
+		lblTitle.setFont(new Font("Serif", Font.BOLD, 32));
         p.add( lblTitle );
-		p.add (btnExit);
+		
 		p.setBounds (50,50,600, 30);		
 		return p ;
 	}
@@ -133,6 +138,28 @@ public class CustomerManagementScreen extends JFrame {
         return panel;
 
 	}
+    
+    public JPanel buildUserManagePanel() {
+    	
+    	JButton edit = new JButton("Edit");
+    	JButton add = new JButton("Add");
+    	add.addActionListener(e -> {
+    		new AddCustomerDashboard();
+    		
+    		
+    	});
+    	JButton delete = new JButton("Delete");
+    	JPanel panel = new JPanel();
+    	BoxLayout layout = new BoxLayout(panel, BoxLayout.X_AXIS);
+    	
+    	panel.setLayout(layout);
+    	panel.add(edit);
+    	panel.add(add);
+    	panel.add(delete);
+    	panel.setBounds (50,400,500, 30);
+    	
+    	return panel;
+    }
 
     public JPanel buildPnlSort  ( ) {
     		ButtonGroup rbgOrder = new ButtonGroup();
@@ -143,7 +170,7 @@ public class CustomerManagementScreen extends JFrame {
 			comboBox.addItem("Descending");
 
         	final JLabel lblSort  = new  JLabel( "Sort By" );
-        	String[] criteria = { "First Name", "Last Name" };
+        	String[] criteria = { "First Name", "Last Name", "Username" };
         	cbxSortCriteria = new  JComboBox( criteria );
     
         	JButton sortUsersButton   = new JButton("sort"); //
@@ -167,26 +194,24 @@ public class CustomerManagementScreen extends JFrame {
 
 
     public JPanel buildPnlSearch  ( ) {
-        	final JLabel lblSearch  = new  JLabel( "Search By" );
-        	String[] criteria = { "All Fields", "Last Name", "First Name", "Username" };
-    		cbxSearchCriteria = new  JComboBox( criteria );
+
+
 
 			JPanel p = new JPanel() ;
         	BoxLayout layout = new BoxLayout(p, BoxLayout.X_AXIS);
         	p.setLayout(layout);
-        	p.add(lblSearch);
-        	p.add(cbxSearchCriteria);
+
 
         	p.add( txtSearch);
         	p.add(btnSearch);
+        	p.add (btnExit);
+        	btnExit.addActionListener(e-> {
+        		this.dispose();
+        	});
 
 			p.setBounds (50,450,500, 30);
 
 			return p ;
-	}
-
-    public static void main(String[] args) {
-		new CustomerManagementScreen(null);
 	}
 	
 }
