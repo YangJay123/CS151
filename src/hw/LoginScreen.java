@@ -71,6 +71,7 @@ public class LoginScreen extends JDialog {
                 	} else {
                     JOptionPane.showMessageDialog(frame, "Login Successful! Welcome, " + user.getFirstName() + "! You will now go to menu selection!"
                     		, "Success", JOptionPane.INFORMATION_MESSAGE);	
+                    CustomerDashboard customer = new CustomerDashboard(user);
                     frame.dispose();
                     //CustomerDashboard customer = new CustomerDashboard(user);
                     //customer.displayCustomerDashboard
