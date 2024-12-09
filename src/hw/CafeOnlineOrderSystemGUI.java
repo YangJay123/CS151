@@ -1,9 +1,13 @@
 package hw;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class CafeOnlineOrderSystemGUI extends JFrame{
 	
@@ -11,13 +15,23 @@ public class CafeOnlineOrderSystemGUI extends JFrame{
 	
 	public CafeOnlineOrderSystemGUI() {
         // Set up the this
-
+		Image image;
+		JLabel background = new JLabel();
+		try {
+			image = ImageIO.read(new File("background.jpg"));
+			background = new JLabel(new ImageIcon(image));
+			this.add(background);
+			background.setLayout( new BorderLayout() );
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.setTitle("Pug Petting Cafe Co.");
-		this.setSize(800, 450);
+		this.setSize(700, 450);
 		this.setLocationRelativeTo(null);
-		this.setLayout(new GridBagLayout());
+		background.setLayout(new GridBagLayout());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+		
 		GridBagConstraints gbc = new GridBagConstraints();
 		// xxx specify that the component's display area will be from gridx to 
 		// xxx the last cell in the row
@@ -26,11 +40,15 @@ public class CafeOnlineOrderSystemGUI extends JFrame{
 		// xxx but do not change its height.
         gbc.fill =      GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(10, 50, 10, 50); 
-		
+        
    		// Welcome title
         JLabel welcomeLabel = new JLabel("Welcome to Pug Petting Cafe!", SwingConstants.CENTER);
         welcomeLabel.setFont(new Font("Serif", Font.BOLD, 32));
       
+      
+        
+        
+        
         
         
         JButton loginButton = new JButton("Login");
@@ -40,13 +58,13 @@ public class CafeOnlineOrderSystemGUI extends JFrame{
        
         
         JLabel notUser = new JLabel("Not a User? Click here to sign up!", SwingConstants.CENTER);
-        notUser.setFont(new Font("Sans", Font.PLAIN, 16));
+        notUser.setFont(new Font("Sans", Font.BOLD, 16));
         
-        this.add(welcomeLabel, gbc);
-        this.add(loginButton, gbc);
-        this.add(exitButton,gbc);
-        this.add(notUser, gbc);
-        this.add(signUpButton, gbc);
+        background.add(welcomeLabel, gbc);
+        background.add(loginButton, gbc);
+        background.add(exitButton,gbc);
+        background.add(notUser, gbc);
+        background.add(signUpButton, gbc);
         
         loginButton.addActionListener(e -> {
             LoginScreen loginScreen = new LoginScreen(CafeOnlineOrderSystemGUI.this, null);
