@@ -42,7 +42,6 @@ public enum cafe {
 			scn.nextLine();
 			loadMenu(scn);
 			loadUsers(scn);
-			System.out.println("aye");
         	scn.close();
 			
 		} catch(IOException ex) {
