@@ -58,7 +58,7 @@ public class AdminDashboard extends JFrame {
     
     public void addCustomerDisplay() {
     	
-    	CustomerManagementScreen customerAdmin = new CustomerManagementScreen(admin);
+    	CustomerManagementScreen customerManagement = new CustomerManagementScreen(admin);
     	/*
     	JFrame frame = new JFrame ("Enter User Details");
     	frame.setSize(800, 600);

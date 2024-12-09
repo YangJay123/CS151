@@ -74,7 +74,7 @@ public class CustomerManagementScreen extends JFrame {
 
     public JPanel buildPnlTop  ( ) {
 		JPanel p = new JPanel ();
-		JLabel lblTitle = new JLabel ( "Library Users" ) ;
+		JLabel lblTitle = new JLabel ( "Pug Petting Cafe Users" ) ;
         p.add( lblTitle );
 		p.add (btnExit);
 		p.setBounds (50,50,600, 30);		
@@ -168,7 +168,7 @@ public class CustomerManagementScreen extends JFrame {
 
     public JPanel buildPnlSearch  ( ) {
         	final JLabel lblSearch  = new  JLabel( "Search By" );
-        	String[] criteria = { "All Fields", "Last Name", "First Name", "ID", "Email" };
+        	String[] criteria = { "All Fields", "Last Name", "First Name", "Username" };
     		cbxSearchCriteria = new  JComboBox( criteria );
 
 			JPanel p = new JPanel() ;
