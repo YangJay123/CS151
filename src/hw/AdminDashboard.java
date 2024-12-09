@@ -4,10 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class AdminDashboard extends JFrame {
 
     private User admin;
+
 
     public AdminDashboard( User admin) {
         //super("Admin Dashboard");
@@ -41,9 +43,9 @@ public class AdminDashboard extends JFrame {
         JButton manageMenu = new JButton ("Manage Menu");
         JButton loginAsCustomer = new JButton ("Login as Customer");
         
-       // manageCustomer.addActionListener(e -> customerDisplay());
+       manageCustomer.addActionListener(e -> addCustomerDisplay());
        // manageMenu.addActionListener(e -> menuDisplay );
-       loginAsCustomer.addActionListener(e -> customerLogDisplay());
+       //loginAsCustomer.addActionListener(e -> customerLogDisplay());
         
         frame.add(welcomeLabel, gbc);
         frame.add(manageCustomer, gbc);
@@ -54,7 +56,10 @@ public class AdminDashboard extends JFrame {
         frame.setVisible(true);
     }
     
-    public void customerLogDisplay() {
+    public void addCustomerDisplay() {
+    	
+    	CustomerManagementScreen customerAdmin = new CustomerManagementScreen(admin);
+    	/*
     	JFrame frame = new JFrame ("Enter User Details");
     	frame.setSize(800, 600);
 		frame.setLocationRelativeTo(null);
@@ -80,7 +85,28 @@ public class AdminDashboard extends JFrame {
       	JTextField emailField = new JTextField(20);
     	JPasswordField passwordField = new JPasswordField(20);
     	JButton okButton = new JButton("ok");
+    	okButton.addActionListener(e -> {
+    		String first = firstNameField.getText().trim();
+    		String last = lastNameField.getText().trim();
+    		String email = emailField.getText().trim();
+    		String pw = new String(passwordField.getPassword()).trim();
+    		if(first.isEmpty() || last.isEmpty() || email.isEmpty() || pw.isEmpty()) return;
+    		String username = generateUsername(first, last);
+    		boolean active = userStatus.getSelectedItem().equals("active");
+    		User newUser;
+    		if(((String)userType.getSelectedItem()).equals("Admin")) {
+    			newUser = new Admin(first, last, email, username, pw, active);
+    		} else {
+    			newUser = new Customer(first, last, email, username, pw, active);
+    		}
+    		cafe.DB.addUser(newUser);
+			JOptionPane.showMessageDialog(frame, "Signup Successful! Your username is: " + username, "Success", JOptionPane.INFORMATION_MESSAGE);
+    		
+    	});
     	JButton cancelButton = new JButton("cancel");
+    	cancelButton.addActionListener(e -> {
+    		frame.dispose();
+    	});
     	
     	frame.add(new JLabel("User Type"), gbc);
     	frame.add(userType, gbc);
@@ -90,16 +116,21 @@ public class AdminDashboard extends JFrame {
     	frame.add(lastNameField, gbc);
     	frame.add(new JLabel("Email:"), gbc);
     	frame.add(emailField, gbc);
-    	frame.add(new JLabel("Passwod:"), gbc);
+    	frame.add(new JLabel("Password:"), gbc);
     	frame.add(passwordField, gbc);
     	frame.add(new JLabel("Status"), gbc);
     	frame.add(userStatus, gbc);
     	frame.add(okButton,gbc);
     	frame.add(cancelButton,gbc);
-    	
-    	
-    	
-    	
     	frame.setVisible(true);
+    	
+    	*/
+    }
+    private static String generateUsername(String firstName, String lastName) {
+        Random random = new Random();
+        int randomNumber = 1000 + random.nextInt(9000);  // Generates a number from 1000 to 9999
+        return "" + firstName + randomNumber;
     }
 }
+
+

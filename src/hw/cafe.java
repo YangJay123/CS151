@@ -2,6 +2,7 @@ package hw;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -24,5 +25,15 @@ public enum cafe {
 	}
 	public static synchronized User getUser(String username) {
 	    return DB.users.get(username);
+	}
+	public synchronized boolean removeUser(User u) {
+		DB.users.remove(u);
+		return true;
+	}
+	public synchronized Iterator<Map.Entry<String, User>> userIterator() {
+		return users.entrySet().iterator();
+	}
+	public synchronized Iterator<MenuItem> menuIterator() {
+		return menu.iterator();
 	}
 }
